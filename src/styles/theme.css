@@ -1,0 +1,142 @@
+:root {
+  --font-size: 16px;
+
+  /* Brand tokens, estratti dal logo Restainup */
+  --ink: #1d1f1c;
+  --lime: #adc936;
+  --spark: #db0835;
+
+  --background: #fafafa;
+  --foreground: var(--ink);
+  --card: #ffffff;
+  --card-foreground: var(--ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--ink);
+  --primary: var(--lime);
+  /* Testo scuro sopra il lime: il bianco non ha contrasto sufficiente su questo verde chiaro */
+  --primary-foreground: var(--ink);
+  --secondary: #f0f0ee;
+  --secondary-foreground: var(--ink);
+  --muted: #f0f0ee;
+  --muted-foreground: #6b7280;
+  --accent: #eef3d9;
+  --accent-foreground: var(--ink);
+  --destructive: var(--spark);
+  --destructive-foreground: #ffffff;
+  --border: rgba(29, 31, 28, 0.1);
+  --input: transparent;
+  --input-background: #f3f3f1;
+  --switch-background: #d8dbd0;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: var(--lime);
+  --radius: 0.75rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Token brand esposti come utility dirette: bg-ink, text-spark, ecc. */
+  --color-ink: var(--ink);
+  --color-lime: var(--lime);
+  --color-spark: var(--spark);
+
+  /* Font stack (definiti in fonts.css) esposti come font-sans / font-display / font-mono */
+  --font-sans: var(--font-body);
+  --font-display: var(--font-heading);
+  --font-mono: var(--font-mono-family);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  /**
+  * Default typography styles for HTML elements (h1-h4, p, label, button, input).
+  * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
+  */
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  /* Scala fluida (clamp) invece di breakpoint fissi: titoli grandi e sicuri
+     su ogni pagina senza dover annotare ogni <h1>/<h2> con classi responsive. */
+
+  h1 {
+    @apply font-display;
+    font-size: clamp(2.25rem, 1.7rem + 2.4vw, 4rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    @apply font-display;
+    font-size: clamp(1.75rem, 1.5rem + 1.1vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    @apply font-display;
+    font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  h4 {
+    @apply font-display;
+    font-size: clamp(1.05rem, 1rem + 0.2vw, 1.125rem);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  label {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  button {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  input {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+  }
+}
