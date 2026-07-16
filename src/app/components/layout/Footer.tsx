@@ -9,7 +9,7 @@ export function Footer() {
     <footer className="border-t border-border bg-background">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-14 md:flex-row md:justify-between">
         <div className="flex flex-col gap-4">
-          <img src={logo} alt="Restainup" className="h-7 w-auto" />
+          <img src={logo} alt="Restainup" className="h-7 w-auto self-start" />
           <div className="font-mono text-xs leading-relaxed text-muted-foreground">
             <p>{companyInfo.legalName} — Cap. Soc. {companyInfo.shareCapital}</p>
             <p>Sede Legale: {companyInfo.registeredOffice}</p>
