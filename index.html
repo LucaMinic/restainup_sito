@@ -6,20 +6,63 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RestAInUp</title>
-    <meta name="description" content="RestAInUp" />
+    <link rel="icon" href="%BASE_URL%favicon.svg" type="image/svg+xml" />
+
+    <!--
+      Title/description/OG qui sotto sono il fallback statico (prima del mount React
+      e per i crawler che non eseguono JS, es. i bot di preview social). Sono già
+      allineati alla homepage: src/app/components/layout/Seo.tsx li riscrive per
+      ogni route una volta montata l'app, leggendo da src/app/data/seo.ts.
+    -->
+    <title>Restainup — Sviluppo Web, App e Trasformazione Digitale</title>
+    <meta
+      name="description"
+      content="Restainup progetta siti, app, e-commerce e strumenti su misura per guidare la trasformazione digitale della tua azienda. Scopri i nostri servizi."
+    />
     <!-- Remove the line below only once the site is live on its final domain -->
     <meta name="robots" content="noindex, nofollow" />
 
     <link rel="canonical" href="https://lucaminic.github.io/restainup_sito/" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="RestAInUp" />
-    <meta property="og:title" content="RestAInUp" />
-    <meta property="og:description" content="RestAInUp" />
+    <meta property="og:site_name" content="Restainup" />
+    <meta property="og:title" content="Restainup — Sviluppo Web, App e Trasformazione Digitale" />
+    <meta
+      property="og:description"
+      content="Restainup progetta siti, app, e-commerce e strumenti su misura per guidare la trasformazione digitale della tua azienda. Scopri i nostri servizi."
+    />
     <meta property="og:url" content="https://lucaminic.github.io/restainup_sito/" />
+    <meta property="og:image" content="https://lucaminic.github.io/restainup_sito/og-image.jpg" />
     <meta property="og:locale" content="it_IT" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Restainup — Sviluppo Web, App e Trasformazione Digitale" />
+    <meta
+      name="twitter:description"
+      content="Restainup progetta siti, app, e-commerce e strumenti su misura per guidare la trasformazione digitale della tua azienda. Scopri i nostri servizi."
+    />
+    <meta name="twitter:image" content="https://lucaminic.github.io/restainup_sito/og-image.jpg" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Restainup",
+        "legalName": "Resta in UP Srl",
+        "url": "https://lucaminic.github.io/restainup_sito/",
+        "email": "info@restainup.it",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Milano",
+          "addressCountry": "IT"
+        },
+        "parentOrganization": {
+          "@type": "Organization",
+          "name": "Gruppo APM",
+          "url": "https://www.gruppoapm.com/"
+        },
+        "description": "Restainup progetta siti, app, e-commerce e strumenti su misura per guidare la trasformazione digitale delle aziende."
+      }
+    </script>
 
     <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
 

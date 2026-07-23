@@ -1,22 +1,36 @@
 import { useEffect, useState } from 'react';
 import { useReducedMotion } from 'motion/react';
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, type CarouselApi } from '../ui/carousel';
-import { PlaceholderMedia } from '../shared/PlaceholderMedia';
 import { cn } from '../ui/utils';
+import { useLanguage } from '../../i18n/LanguageContext';
+import type { Language } from '../../i18n/LanguageContext';
+import sviluppoWebApp from '../../../assets/Sviluppo Web & App.jpg';
+import innovazioneRD from '../../../assets/Innovazione Tecnologica & R&D.jpg';
+import consulenzaDigitale from '../../../assets/Consulenza digitale.jpg';
 
 const AUTOROTATE_MS = 5000;
 
 // Un'immagine rappresentativa per ciascuna delle 3 aree di intervento.
-const slides = [
-  { title: 'Sviluppo Web & App', photoId: 1, label: '{{FOTO_SVILUPPO_WEB_APP}}' },
-  { title: 'Innovazione Tecnologica & R&D', photoId: 36, label: '{{FOTO_INNOVAZIONE_RD}}' },
-  { title: 'Consulenza Digitale', photoId: 22, label: '{{FOTO_CONSULENZA_DIGITALE}}' },
-];
+const slidesByLang: Record<Language, { title: string; image: string }[]> = {
+  it: [
+    { title: 'Sviluppo Web & App', image: sviluppoWebApp },
+    { title: 'Innovazione Tecnologica', image: innovazioneRD },
+    { title: 'Consulenza Digitale', image: consulenzaDigitale },
+  ],
+  en: [
+    { title: 'Web & App Development', image: sviluppoWebApp },
+    { title: 'Technology Innovation', image: innovazioneRD },
+    { title: 'Digital Consulting', image: consulenzaDigitale },
+  ],
+};
 
 export function ServicesImageSlider() {
   const [api, setApi] = useState<CarouselApi>();
   const [selected, setSelected] = useState(0);
   const prefersReducedMotion = useReducedMotion();
+  const { language } = useLanguage();
+  const slides = slidesByLang[language];
+  const goToSlideLabel = language === 'en' ? 'Go to slide' : 'Vai alla slide';
 
   useEffect(() => {
     if (!api) return;
@@ -38,7 +52,11 @@ export function ServicesImageSlider() {
           {slides.map((slide) => (
             <CarouselItem key={slide.title}>
               <div className="relative overflow-hidden rounded-2xl">
-                <PlaceholderMedia label={slide.label} photoId={slide.photoId} className="aspect-[21/9] w-full" />
+                <img
+                  src={slide.image}
+                  alt={slide.title}
+                  className="aspect-[21/9] w-full object-cover"
+                />
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 to-transparent p-6">
                   <p className="font-display text-lg text-background">{slide.title}</p>
                 </div>
@@ -55,7 +73,7 @@ export function ServicesImageSlider() {
           <button
             key={slide.title}
             type="button"
-            aria-label={`Vai alla slide ${index + 1}: ${slide.title}`}
+            aria-label={`${goToSlideLabel} ${index + 1}: ${slide.title}`}
             onClick={() => api?.scrollTo(index)}
             className={cn(
               'h-1.5 rounded-full transition-all',

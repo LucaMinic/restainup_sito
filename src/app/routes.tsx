@@ -5,6 +5,8 @@ import { PortfolioPage } from "./pages/PortfolioPage";
 import { ChiSiamoPage } from "./pages/ChiSiamoPage";
 import { RemoteDentalPage } from "./pages/RemoteDentalPage";
 import { ContattiPage } from "./pages/ContattiPage";
+import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
+import { CookiePolicyPage } from "./pages/CookiePolicyPage";
 import { RootLayout } from "./layouts/RootLayout";
 
 export const router = createBrowserRouter([
@@ -18,6 +20,8 @@ export const router = createBrowserRouter([
       { path: "chi-siamo", Component: ChiSiamoPage },
       { path: "remote-dental", Component: RemoteDentalPage },
       { path: "contatti", Component: ContattiPage },
+      { path: "privacy-policy", Component: PrivacyPolicyPage },
+      { path: "cookie-policy", Component: CookiePolicyPage },
       { path: "*", Component: HomePage },
     ],
   },

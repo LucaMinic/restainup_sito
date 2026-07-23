@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'motion/react';
 import { BrowserFrame } from './BrowserFrame';
 import { PlaceholderMedia } from '../shared/PlaceholderMedia';
+import { useLanguage } from '../../i18n/LanguageContext';
 import { cn } from '../ui/utils';
 
 export function ProjectCard({
@@ -23,6 +24,8 @@ export function ProjectCard({
   large?: boolean;
 }) {
   const prefersReducedMotion = useReducedMotion();
+  const { language } = useLanguage();
+  const featuredLabel = language === 'en' ? 'Featured' : 'In evidenza';
 
   return (
     <div className="group flex h-full flex-col">
@@ -41,7 +44,7 @@ export function ProjectCard({
         {featured && (
           <span className="absolute -top-2 -right-2 flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-xs font-medium text-ink shadow-sm ring-1 ring-border">
             <span className="size-1.5 rounded-full bg-spark" />
-            In evidenza
+            {featuredLabel}
           </span>
         )}
       </motion.div>

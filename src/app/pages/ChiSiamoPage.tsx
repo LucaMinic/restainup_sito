@@ -1,56 +1,39 @@
-import { chiSiamoContent } from '../data/chiSiamo';
+import { getChiSiamoContent } from '../data/chiSiamo';
+import { useLanguage } from '../i18n/LanguageContext';
 import { SectionEyebrow } from '../components/shared/SectionEyebrow';
 import { RevealOnScroll } from '../components/shared/RevealOnScroll';
 import { DarkCtaBanner } from '../components/shared/DarkCtaBanner';
-import { PlaceholderMedia } from '../components/shared/PlaceholderMedia';
-import { TeamAvatar } from '../components/shared/TeamAvatar';
+import { MethodWheel } from '../components/chiSiamo/MethodWheel';
+import { TeamCollective } from '../components/chiSiamo/TeamCollective';
+import { Button } from '../components/ui/button';
+import gruppoApmLogo from '../../assets/logo gruppo apm.png';
+import personeImg from '../../assets/persone.jpg';
 
 export function ChiSiamoPage() {
+  const { language } = useLanguage();
+  const chiSiamoContent = getChiSiamoContent(language);
+  const imageAlt = language === 'en' ? 'People working together on a project' : 'Persone al lavoro insieme su un progetto';
+
   return (
     <>
-      <section className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-        <RevealOnScroll className="max-w-2xl">
+      <section className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-2 md:items-center md:py-28">
+        <RevealOnScroll>
           <SectionEyebrow>{chiSiamoContent.eyebrow}</SectionEyebrow>
           <h1 className="mt-4">{chiSiamoContent.title}</h1>
           <p className="mt-5 text-lg text-muted-foreground">{chiSiamoContent.intro}</p>
         </RevealOnScroll>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6 pb-20">
-        <RevealOnScroll>
-          <SectionEyebrow>{chiSiamoContent.method.eyebrow}</SectionEyebrow>
-          <h2 className="mt-4">{chiSiamoContent.method.title}</h2>
+        <RevealOnScroll delay={0.1}>
+          <img
+            src={personeImg}
+            alt={imageAlt}
+            className="aspect-[4/3] w-full rounded-xl object-cover"
+          />
         </RevealOnScroll>
-
-        <div className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {chiSiamoContent.method.steps.map((step, index) => (
-            <RevealOnScroll key={step.title} delay={index * 0.06}>
-              <span className="font-mono text-sm text-primary">{String(index + 1).padStart(2, '0')}</span>
-              <h3 className="mt-3">{step.title}</h3>
-              <p className="mt-2 text-muted-foreground">{step.text}</p>
-            </RevealOnScroll>
-          ))}
-        </div>
       </section>
 
-      <section className="bg-secondary/40 py-20">
-        <div className="mx-auto max-w-6xl px-6">
-          <RevealOnScroll>
-            <SectionEyebrow>{chiSiamoContent.team.eyebrow}</SectionEyebrow>
-            <h2 className="mt-4">{chiSiamoContent.team.title}</h2>
-          </RevealOnScroll>
+      <MethodWheel />
 
-          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {chiSiamoContent.team.members.map((member, index) => (
-              <RevealOnScroll key={member.name} delay={index * 0.06}>
-                <TeamAvatar name={member.name} index={index} className="aspect-square w-full rounded-xl" />
-                <h3 className="mt-4 text-base">{member.name}</h3>
-                <p className="text-sm text-muted-foreground">{member.role}</p>
-              </RevealOnScroll>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TeamCollective />
 
       <section className="mx-auto max-w-6xl px-6 py-20">
         <RevealOnScroll className="grid gap-10 md:grid-cols-[1fr_auto] md:items-center">
@@ -59,7 +42,22 @@ export function ChiSiamoPage() {
             <h2 className="mt-4 max-w-lg">{chiSiamoContent.groupApm.title}</h2>
             <p className="mt-4 max-w-lg text-muted-foreground">{chiSiamoContent.groupApm.text}</p>
           </div>
-          <PlaceholderMedia type="logo" label={chiSiamoContent.groupApm.logo} className="h-28 w-48" />
+          <div className="flex w-fit flex-col items-center gap-4">
+            <a
+              href={chiSiamoContent.groupApm.logoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center transition-opacity hover:opacity-70"
+              aria-label={chiSiamoContent.groupApm.linkAriaLabel}
+            >
+              <img src={gruppoApmLogo} alt="Gruppo APM" className="h-14 w-auto sm:h-16" />
+            </a>
+            <Button asChild variant="outline" size="sm">
+              <a href={chiSiamoContent.groupApm.logoUrl} target="_blank" rel="noopener noreferrer">
+                {chiSiamoContent.groupApm.linkLabel}
+              </a>
+            </Button>
+          </div>
         </RevealOnScroll>
       </section>
 

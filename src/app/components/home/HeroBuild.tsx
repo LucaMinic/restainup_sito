@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router';
 import { motion, useReducedMotion } from 'motion/react';
-import { homeContent } from '../../data/home';
+import { getHomeContent } from '../../data/home';
+import { useLanguage } from '../../i18n/LanguageContext';
 import { Button } from '../ui/button';
 import { BrowserFrame } from '../portfolio/BrowserFrame';
 import { SectionEyebrow } from '../shared/SectionEyebrow';
+import { Parallax } from '../shared/Parallax';
 import digitalTransformationVideo from '../../../assets/Digital-transformation-3-comp.mp4';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -13,6 +15,8 @@ export function HeroBuild() {
   const prefersReducedMotion = useReducedMotion();
   const [built, setBuilt] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { language } = useLanguage();
+  const homeContent = getHomeContent(language);
 
   useEffect(() => {
     if (prefersReducedMotion) {
@@ -30,8 +34,8 @@ export function HeroBuild() {
   }, [prefersReducedMotion]);
 
   return (
-    <section className="mx-auto grid max-w-6xl gap-16 px-6 py-20 md:grid-cols-2 md:items-center md:py-28">
-      <div className="relative">
+    <section className="mx-auto grid max-w-7xl gap-12 px-6 pt-6 pb-14 md:grid-cols-12 md:items-center md:gap-8 md:pt-20 md:pb-20">
+      <div className="relative order-2 md:col-span-5">
         <motion.div
           initial={false}
           animate={{ opacity: built ? 1 : 0, y: built ? 0 : 10 }}
@@ -65,40 +69,42 @@ export function HeroBuild() {
         )}
       </div>
 
-      <BrowserFrame url="restainup.it">
-        <div className="relative aspect-[4/3]">
-          {!prefersReducedMotion && (
-            <motion.div
-              className="pointer-events-none absolute inset-6 flex flex-col gap-3"
-              aria-hidden="true"
-              initial={{ opacity: 1 }}
-              animate={{ opacity: built ? 0 : 1 }}
-              transition={{ duration: 0.4, ease: EASE, delay: 0.1 }}
-            >
-              <div className="h-3 w-20 rounded-full bg-ink/10" />
-              <div className="h-24 w-full rounded-lg bg-ink/10" />
-              <div className="flex gap-3">
-                <div className="h-14 flex-1 rounded-md bg-ink/10" />
-                <div className="h-14 flex-1 rounded-md bg-ink/10" />
-              </div>
-              <div className="h-8 w-24 rounded-md bg-ink/10" />
-            </motion.div>
-          )}
+      <Parallax className="order-1 md:col-span-7" offset={22}>
+        <BrowserFrame url="restainup.it">
+          <div className="relative aspect-[4/3]">
+            {!prefersReducedMotion && (
+              <motion.div
+                className="pointer-events-none absolute inset-6 flex flex-col gap-3"
+                aria-hidden="true"
+                initial={{ opacity: 1 }}
+                animate={{ opacity: built ? 0 : 1 }}
+                transition={{ duration: 0.4, ease: EASE, delay: 0.1 }}
+              >
+                <div className="h-3 w-20 rounded-full bg-ink/10" />
+                <div className="h-24 w-full rounded-lg bg-ink/10" />
+                <div className="flex gap-3">
+                  <div className="h-14 flex-1 rounded-md bg-ink/10" />
+                  <div className="h-14 flex-1 rounded-md bg-ink/10" />
+                </div>
+                <div className="h-8 w-24 rounded-md bg-ink/10" />
+              </motion.div>
+            )}
 
-          <motion.video
-            ref={videoRef}
-            src={digitalTransformationVideo}
-            className="absolute inset-0 h-full w-full object-cover"
-            autoPlay={!prefersReducedMotion}
-            loop
-            muted
-            playsInline
-            initial={false}
-            animate={{ opacity: built ? 1 : 0 }}
-            transition={{ duration: 0.5, ease: EASE, delay: prefersReducedMotion ? 0 : 0.15 }}
-          />
-        </div>
-      </BrowserFrame>
+            <motion.video
+              ref={videoRef}
+              src={digitalTransformationVideo}
+              className="absolute inset-0 h-full w-full object-cover"
+              autoPlay={!prefersReducedMotion}
+              loop
+              muted
+              playsInline
+              initial={false}
+              animate={{ opacity: built ? 1 : 0 }}
+              transition={{ duration: 0.5, ease: EASE, delay: prefersReducedMotion ? 0 : 0.15 }}
+            />
+          </div>
+        </BrowserFrame>
+      </Parallax>
     </section>
   );
 }

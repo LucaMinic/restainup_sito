@@ -1,4 +1,6 @@
-export const chiSiamoContent = {
+import type { Language } from '../i18n/LanguageContext';
+
+const it = {
   eyebrow: 'Chi siamo',
   title: 'Le persone che costruiscono con voi',
   intro:
@@ -25,30 +27,32 @@ export const chiSiamoContent = {
       },
     ],
   },
-  // NOTA: nomi e ruoli sono placeholder illustrativi — sostituisci con il team reale.
   team: {
     eyebrow: 'Team',
-    title: 'Chi c’è dietro Restainup',
-    members: [
+    title: 'Un team, tutte le competenze del Gruppo',
+    intro:
+      'Dietro Restainup non ci sono ruoli isolati, ma una squadra di competenze che lavora in sinergia con l’intero Gruppo APM. Seguiamo ogni progetto internamente, dall’idea alla manutenzione: specializzazioni diverse, un’unica squadra.',
+    pillars: [
+      { label: '100% in-house' },
+      { label: 'Sinergia con tutto il Gruppo' },
+      { label: 'Competenze integrate' },
+    ],
+    steps: [
       {
-        name: 'Marco Bianchi',
-        role: 'Founder & CEO',
-        photo: '{{FOTO_TEAM_MARCO}}',
+        title: 'Ideazione',
+        text: 'Analizziamo il contesto e definiamo la direzione giusta.',
       },
       {
-        name: 'Giulia Conti',
-        role: 'Lead Developer',
-        photo: '{{FOTO_TEAM_GIULIA}}',
+        title: 'Prototipazione',
+        text: 'Diamo forma concreta alle idee prima di scrivere codice.',
       },
       {
-        name: 'Davide Ferrari',
-        role: 'Project Manager',
-        photo: '{{FOTO_TEAM_DAVIDE}}',
+        title: 'Sviluppo',
+        text: 'Costruiamo la soluzione per iterazioni rapide e verificabili.',
       },
       {
-        name: 'Elena Ricci',
-        role: 'UX/UI Designer',
-        photo: '{{FOTO_TEAM_ELENA}}',
+        title: 'Manutenzione ed evoluzione',
+        text: 'Restiamo al fianco del prodotto anche oltre il rilascio.',
       },
     ],
   },
@@ -56,7 +60,9 @@ export const chiSiamoContent = {
     eyebrow: 'Gruppo APM',
     title: 'Parte di una rete più ampia',
     text: 'Restainup è una società del Gruppo APM: un legame che ci permette di affiancare alle competenze digitali una rete di esperienze e settori differenti, mettendola a disposizione di ogni cliente che lavora con noi.',
-    logo: '{{LOGO_GRUPPO_APM}}',
+    logoUrl: 'https://www.gruppoapm.com/',
+    linkLabel: 'Scopri di più su Gruppo APM',
+    linkAriaLabel: 'Vai al sito di Gruppo APM (si apre in una nuova scheda)',
   },
   cta: {
     title: 'Vuoi conoscerci meglio?',
@@ -65,3 +71,81 @@ export const chiSiamoContent = {
     buttonPath: '/contatti',
   },
 };
+
+const en: typeof it = {
+  eyebrow: 'About Us',
+  title: 'The people who build with you',
+  intro:
+    'Restainup was created to guide companies through digital transformation with the same approach we bring to every project: listening, technical rigor and a direct relationship with those who trust us with their work.',
+  method: {
+    eyebrow: 'Method',
+    title: 'How we work',
+    steps: [
+      {
+        title: 'Listening',
+        text: 'We always start from the real context: goals, constraints and the people involved, before proposing any solution.',
+      },
+      {
+        title: 'Design',
+        text: 'We define architecture, design and roadmap together, so every technical choice stays clear even to non-technical people.',
+      },
+      {
+        title: 'Development',
+        text: 'We build in short, verifiable iterations, with frequent updates instead of a single delivery at the end of the project.',
+      },
+      {
+        title: 'Support',
+        text: 'We stay by the client\'s side even after release, with ongoing maintenance and consulting.',
+      },
+    ],
+  },
+  team: {
+    eyebrow: 'Team',
+    title: 'One team, all the skills of the Group',
+    intro:
+      "Behind Restainup there are no isolated roles, but a team of skills working in synergy with the entire Gruppo APM. We follow every project in-house, from idea to maintenance: different specializations, one single team.",
+    pillars: [
+      { label: '100% in-house' },
+      { label: 'Synergy with the whole Group' },
+      { label: 'Integrated skills' },
+    ],
+    steps: [
+      {
+        title: 'Ideation',
+        text: 'We analyze the context and define the right direction.',
+      },
+      {
+        title: 'Prototyping',
+        text: 'We give concrete shape to ideas before writing code.',
+      },
+      {
+        title: 'Development',
+        text: 'We build the solution through fast, verifiable iterations.',
+      },
+      {
+        title: 'Maintenance & Evolution',
+        text: 'We stay by the product\'s side well beyond release.',
+      },
+    ],
+  },
+  groupApm: {
+    eyebrow: 'Gruppo APM',
+    title: 'Part of a wider network',
+    text: 'Restainup is a Gruppo APM company: a bond that lets us pair digital expertise with a network of experience and industries, making it available to every client who works with us.',
+    logoUrl: 'https://www.gruppoapm.com/',
+    linkLabel: 'Learn more about Gruppo APM',
+    linkAriaLabel: 'Go to the Gruppo APM website (opens in a new tab)',
+  },
+  cta: {
+    title: 'Want to get to know us better?',
+    subtitle: "Tell us about your project: together we'll find the best way to get started.",
+    buttonLabel: 'Contact us',
+    buttonPath: '/contatti',
+  },
+};
+
+const chiSiamoContentByLang: Record<Language, typeof it> = { it, en };
+
+export function getChiSiamoContent(language: Language) {
+  return chiSiamoContentByLang[language];
+}

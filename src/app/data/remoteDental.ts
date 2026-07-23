@@ -1,4 +1,7 @@
-export const remoteDentalContent = {
+import type { Language } from '../i18n/LanguageContext';
+
+const it = {
+  badge: 'Partner e Rivenditore ufficiale',
   eyebrow: 'Servizi innovativi',
   title: 'La soluzione integrata di Teleodontoiatria per lo Studio Medico',
   intro:
@@ -108,3 +111,121 @@ export const remoteDentalContent = {
     buttonPath: '/contatti',
   },
 };
+
+const en: typeof it = {
+  badge: 'Official Partner & Reseller',
+  eyebrow: 'Innovative Services',
+  title: 'The Integrated Teledentistry Solution for the Dental Practice',
+  intro:
+    'Remote Dental allows the Dental Practice to monitor, communicate with and follow up its patients remotely, in a structured and secure way that complies with current regulations. It is the first solution that certifies Teledentistry as a reimbursable, legally enforceable service, capable of generating new patients and new business opportunities for the Dental Practice.',
+  heroCta: {
+    label: 'Request a demo',
+    path: '/contatti',
+  },
+
+  ecosystem: {
+    eyebrow: 'Ecosystem',
+    title: 'An integrated ecosystem, designed to grow — and to grow your business',
+    items: [
+      {
+        title: 'Remote Dental Web App',
+        text: 'Dedicated to the Dental Practice, to manage, certify and monitor remote medical procedures.',
+      },
+      {
+        title: 'Remote Dental App',
+        text: 'Dedicated to the patient, paired with an IoT intra-oral camera device, distributed by the Dental Practice or available in pharmacies and on major e-commerce platforms.',
+      },
+      {
+        title: 'Remote Dental Connect',
+        text: 'IoT device with an intra-oral camera to capture certified images and videos.',
+      },
+    ],
+  },
+
+  clinicalSolution: {
+    eyebrow: 'A Complete Clinical Solution',
+    title: 'Everything you need to offer certified Teledentistry that complies with regulations',
+    items: [
+      { title: 'Medical Procedures', text: 'Teleconsultations, tele-assistance, telemonitoring.' },
+      { title: 'Certifications', text: 'Remote medical procedures certified in compliance with GDPR and the NIS2 directive.' },
+      { title: 'Record Keeping', text: 'Creation of certified, legally enforceable distribution packages.' },
+      {
+        title: 'Reimbursement',
+        text: 'Remote medical services reimbursable through the Contracted Dental Fee Schedule (Nomenclatore Odontoiatrico Convenzionato).',
+      },
+    ],
+  },
+
+  value: {
+    eyebrow: 'Why Remote Dental',
+    title: 'The solution that transforms the doctor-patient relationship',
+    blocks: [
+      {
+        title: 'True Continuity of Care',
+        text: "The care pathway doesn't stop between one visit and the next, but continues in a structured and consistent way. The patient can be monitored, followed and guided step by step, always with the certainty of having a clinical point of reference.",
+      },
+      {
+        title: 'Optimized Clinical Time',
+        text: 'Unnecessary visits are reduced, cases can be pre-assessed through digital triage, and follow-ups become more targeted and efficient: a leaner schedule, less unproductive time and greater focus on the procedures that require an in-office visit.',
+      },
+    ],
+    highlights: ['Constant Monitoring', 'Optimized Schedule', 'Satisfied Patients'],
+  },
+
+  advantages: {
+    studio: {
+      title: 'The Benefits for the Dental Practice',
+      items: [
+        'Constant monitoring and control',
+        'Prevention and scheduled recalls',
+        'Preliminary management of urgent cases',
+        'Reduced unproductive time',
+        'Certified remote medical procedures',
+      ],
+    },
+    paziente: {
+      title: 'The Benefits for the Patient',
+      items: [
+        'Fewer trips',
+        'Greater convenience',
+        'Continuous assistance',
+        'Immediate support when needed',
+        'Reimbursable remote medical procedures',
+      ],
+    },
+  },
+
+  howItWorks: {
+    eyebrow: 'How It Works',
+    title: 'A virtuous circle that sustains itself, in a few simple steps',
+    steps: [
+      {
+        title: 'We bring Teledentistry to your Dental Practice',
+        text: 'With the Remote Dental Web App, the Dental Practice manages and certifies teledentistry procedures. Thanks to partnerships with leading insurance companies, the services also become reimbursable.',
+      },
+      {
+        title: 'From the Dental Practice to the patient',
+        text: "With the Remote Dental App and the Remote Dental Connect intra-oral camera, the Dental Practice extends its services beyond the chair: the patient can send clinical images and videos and receive assistance and monitoring, with the guarantee of certified, reimbursable medical procedures.",
+      },
+      {
+        title: 'From the patient back to the Dental Practice',
+        text: "Remote Dental Connect is also sold in pharmacies and on major e-commerce platforms: simply download the Remote Dental App, activate the intra-oral camera and connect with the Dental Practice in a few simple steps, with participating Dental Practices.",
+      },
+    ],
+  },
+
+  tagline: "It's the patients who look for the Dental Practice. Not the other way around.",
+
+  cta: {
+    title: 'The best solution for dentists, clinics and patients',
+    subtitle: 'Contact us to become part of Remote Dental.',
+    buttonLabel: 'Contact us',
+    buttonPath: '/contatti',
+  },
+};
+
+const remoteDentalContentByLang: Record<Language, typeof it> = { it, en };
+
+export function getRemoteDentalContent(language: Language) {
+  return remoteDentalContentByLang[language];
+}

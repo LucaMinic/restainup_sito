@@ -1,4 +1,5 @@
-import { portfolioContent } from '../data/portfolio';
+import { getPortfolioContent } from '../data/portfolio';
+import { useLanguage } from '../i18n/LanguageContext';
 import { SectionEyebrow } from '../components/shared/SectionEyebrow';
 import { RevealOnScroll } from '../components/shared/RevealOnScroll';
 import { DarkCtaBanner } from '../components/shared/DarkCtaBanner';
@@ -7,6 +8,9 @@ import { isBentoLarge } from '../components/shared/bento';
 import { cn } from '../components/ui/utils';
 
 export function PortfolioPage() {
+  const { language } = useLanguage();
+  const portfolioContent = getPortfolioContent(language);
+
   return (
     <>
       <section className="mx-auto max-w-6xl px-6 py-20 md:py-28">
