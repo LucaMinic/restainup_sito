@@ -19,10 +19,11 @@
       name="description"
       content="Restainup progetta siti, app, e-commerce e strumenti su misura per guidare la trasformazione digitale della tua azienda. Scopri i nostri servizi."
     />
-    <!-- Remove the line below only once the site is live on its final domain -->
-    <meta name="robots" content="noindex, nofollow" />
+    <!-- Default: staging GitHub Pages (noindex). La build per Aruba (build-aruba.sh)
+         imposta VITE_ROBOTS=index, follow per la versione pubblica indicizzabile. -->
+    <meta name="robots" content="%VITE_ROBOTS%" />
 
-    <link rel="canonical" href="https://lucaminic.github.io/restainup_sito/" />
+    <link rel="canonical" href="%VITE_SITE_ORIGIN%%BASE_URL%" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Restainup" />
@@ -31,8 +32,8 @@
       property="og:description"
       content="Restainup progetta siti, app, e-commerce e strumenti su misura per guidare la trasformazione digitale della tua azienda. Scopri i nostri servizi."
     />
-    <meta property="og:url" content="https://lucaminic.github.io/restainup_sito/" />
-    <meta property="og:image" content="https://lucaminic.github.io/restainup_sito/og-image.jpg" />
+    <meta property="og:url" content="%VITE_SITE_ORIGIN%%BASE_URL%" />
+    <meta property="og:image" content="%VITE_SITE_ORIGIN%%BASE_URL%og-image.jpg" />
     <meta property="og:locale" content="it_IT" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Restainup — Sviluppo Web, App e Trasformazione Digitale" />
@@ -40,7 +41,7 @@
       name="twitter:description"
       content="Restainup progetta siti, app, e-commerce e strumenti su misura per guidare la trasformazione digitale della tua azienda. Scopri i nostri servizi."
     />
-    <meta name="twitter:image" content="https://lucaminic.github.io/restainup_sito/og-image.jpg" />
+    <meta name="twitter:image" content="%VITE_SITE_ORIGIN%%BASE_URL%og-image.jpg" />
 
     <script type="application/ld+json">
       {
@@ -48,7 +49,7 @@
         "@type": "Organization",
         "name": "Restainup",
         "legalName": "Resta in UP Srl",
-        "url": "https://lucaminic.github.io/restainup_sito/",
+        "url": "%VITE_SITE_ORIGIN%%BASE_URL%",
         "email": "info@restainup.it",
         "address": {
           "@type": "PostalAddress",

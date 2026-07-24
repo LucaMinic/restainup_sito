@@ -1,11 +1,15 @@
-// Regenerates public/sitemap.xml. Run manually with `node scripts/generate-sitemap.mjs`
-// whenever a route is added/removed/renamed (routes.tsx is the source of truth).
+// Regenerates public/sitemap.xml (default: GitHub Pages staging domain). Run
+// manually with `node scripts/generate-sitemap.mjs` whenever a route is
+// added/removed/renamed (routes.tsx is the source of truth).
 //
-// Update SITE_URL here AND SITE_ORIGIN in src/app/data/seo.ts when the final
-// domain goes live, then rerun this script and remove the noindex meta tag.
+// Override SITE_URL and the output path for other targets (see build-aruba.sh,
+// which regenerates the sitemap directly into dist/ for the Aruba domain):
+//   SITEMAP_SITE_URL=https://www.restainup.it SITEMAP_OUT=dist/sitemap.xml node scripts/generate-sitemap.mjs
 import { writeFileSync } from 'fs';
+import path from 'path';
 
-const SITE_URL = 'https://lucaminic.github.io/restainup_sito';
+const SITE_URL = process.env.SITEMAP_SITE_URL || 'https://lucaminic.github.io/restainup_sito';
+const OUT_PATH = path.resolve(process.cwd(), process.env.SITEMAP_OUT || 'public/sitemap.xml');
 const today = new Date().toISOString().slice(0, 10);
 
 const pages = [
@@ -36,5 +40,5 @@ ${urlEntries}
 </urlset>
 `;
 
-writeFileSync(new URL('../public/sitemap.xml', import.meta.url), xml);
-console.log(`sitemap.xml written with ${pages.length} URLs`);
+writeFileSync(OUT_PATH, xml);
+console.log(`${OUT_PATH} written with ${pages.length} URLs`);

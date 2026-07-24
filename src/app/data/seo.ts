@@ -4,11 +4,12 @@ import digitalTransformationImg from '../../assets/digital transormation.jpg';
 import competenzeGruppoImg from '../../assets/competenze gruppo.jpg';
 import studioMedicoImg from '../../assets/studio medico.jfif';
 
-// Dominio provvisorio di staging (GitHub Pages). Quando il sito passa al dominio
-// definitivo (restainup.it) aggiorna SITE_ORIGIN qui E la costante SITE_URL in
-// scripts/generate-sitemap.mjs, poi rigenera la sitemap e rimuovi il noindex.
-export const SITE_ORIGIN = 'https://lucaminic.github.io';
-export const SITE_URL = `${SITE_ORIGIN}/restainup_sito`;
+// Pilotato da VITE_SITE_ORIGIN (vedi .env per il default GitHub Pages e
+// build-aruba.sh per l'override sul dominio Aruba). SITE_URL combina l'origin
+// con il base path corrente di Vite, così torna corretto in entrambi i flussi
+// (sottocartella su GH Pages, radice su Aruba) senza doppio slash.
+export const SITE_ORIGIN = import.meta.env.VITE_SITE_ORIGIN ?? 'https://lucaminic.github.io';
+export const SITE_URL = `${SITE_ORIGIN}${import.meta.env.BASE_URL.replace(/\/$/, '')}`;
 export const SITE_NAME = 'Restainup';
 
 export type PageSeo = {

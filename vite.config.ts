@@ -4,6 +4,9 @@ import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
+  // Default: GitHub Pages (staging), servito da una sottocartella.
+  // La build per Aruba (dominio alla radice) sovrascrive questo valore con
+  // `--base=/` — vedi build-aruba.sh.
   base: '/restainup_sito/',
   plugins: [
     react(),

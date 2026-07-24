@@ -1,8 +1,6 @@
 # Provisional GitHub Pages deployment — kept fully closed to crawlers on purpose.
-# When the site goes live on its final domain: change Disallow to just the paths
-# that should stay out of the index (if any), remove the noindex meta tag in
-# index.html, and uncomment the Sitemap line below (updated to the final domain).
+# The production deployment is on Aruba (build-aruba.sh generates a separate,
+# indexable robots.txt for that build). This file only applies to the
+# GitHub Pages staging copy.
 User-agent: *
 Disallow: /
-
-# Sitemap: https://www.YOUR-FINAL-DOMAIN.com/sitemap.xml
