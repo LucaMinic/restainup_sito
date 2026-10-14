@@ -7,6 +7,7 @@ import { RemoteDentalPage } from "./pages/RemoteDentalPage";
 import { ContattiPage } from "./pages/ContattiPage";
 import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
 import { CookiePolicyPage } from "./pages/CookiePolicyPage";
+import { AlessandroSenesiCardPage } from "./pages/AlessandroSenesiCardPage";
 import { RootLayout } from "./layouts/RootLayout";
 
 export const router = createBrowserRouter([
@@ -25,4 +26,5 @@ export const router = createBrowserRouter([
       { path: "*", Component: HomePage },
     ],
   },
+  { path: "as", Component: AlessandroSenesiCardPage },
 ], { basename: import.meta.env.BASE_URL });

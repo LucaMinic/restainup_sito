@@ -27,7 +27,9 @@ function upsertLink(rel: string, href: string) {
 // e Open Graph vanno aggiornati manualmente ad ogni cambio di route (react-router
 // non lo fa da solo). Googlebot esegue il JS e legge questi tag dopo il render.
 export function Seo() {
-  const { pathname } = useLocation();
+  // "/remote-dental/" e "/remote-dental" sono la stessa pagina: SEO e canonical
+  // usano sempre la forma senza barra finale.
+  const pathname = useLocation().pathname.replace(/(.)\/+$/, '$1');
   const { language } = useLanguage();
 
   useEffect(() => {

@@ -1,9 +1,13 @@
 /* Stessa coppia di font usata su www.restainup.it: Montserrat (titoli/nav) + Open Sans (testo).
-   JetBrains Mono resta come accento per eyebrow/label, coerente col posizionamento "sviluppiamo codice". */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+   JetBrains Mono resta come accento per eyebrow/label, coerente col posizionamento "sviluppiamo codice".
+   I font sono serviti dal sito stesso (pacchetti @fontsource): nessuna richiesta a Google Fonts,
+   quindi nessun dato del visitatore inviato a Google prima del consenso. */
+@import '@fontsource-variable/montserrat/wght.css';
+@import '@fontsource-variable/open-sans/wght.css';
+@import '@fontsource-variable/jetbrains-mono/wght.css';
 
 :root {
-  --font-heading: 'Montserrat', sans-serif;
-  --font-body: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-mono-family: 'JetBrains Mono', ui-monospace, monospace;
+  --font-heading: 'Montserrat Variable', sans-serif;
+  --font-body: 'Open Sans Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono-family: 'JetBrains Mono Variable', ui-monospace, monospace;
 }

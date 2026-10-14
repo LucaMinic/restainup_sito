@@ -2,6 +2,8 @@ import { NavLink } from 'react-router';
 import logo from '../../../assets/restainup-logo.png';
 import { getCompanyInfo, getNavItems, getLegalLinks } from '../../data/siteMeta';
 import { useLanguage } from '../../i18n/LanguageContext';
+import { openPreferences } from '../../consent/consentStore';
+import { ui as consentUi } from '../../consent/consentTexts';
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -49,7 +51,7 @@ export function Footer() {
           <p className="font-mono text-xs text-muted-foreground">
             © {year} {companyInfo.legalName}. {rightsReserved}
           </p>
-          <nav className="flex gap-4">
+          <nav className="flex flex-wrap gap-x-4 gap-y-2">
             {legalLinks.map((item) => (
               <NavLink
                 key={item.path}
@@ -59,6 +61,13 @@ export function Footer() {
                 {item.label}
               </NavLink>
             ))}
+            <button
+              type="button"
+              onClick={openPreferences}
+              className="font-mono text-xs text-muted-foreground transition-colors hover:text-ink"
+            >
+              {consentUi.footerLink[language]}
+            </button>
           </nav>
         </div>
       </div>

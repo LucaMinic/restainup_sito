@@ -12,6 +12,7 @@ import { Label } from '../components/ui/label';
 import { getCompanyInfo } from '../data/siteMeta';
 import { getContattiContent } from '../data/contatti';
 import { useLanguage } from '../i18n/LanguageContext';
+import { ConsentGate } from '../components/consent/ConsentGate';
 
 const CONTACT_EMAIL = 'info@restainup.it';
 const RECAPTCHA_SITE_KEY = '6Le7u28sAAAAAMc6TQbSEgr1h-Q52tY52_EA-vTS';
@@ -52,7 +53,7 @@ export function ContattiPage() {
         captchaToken,
       };
 
-      const response = await fetch('https://eccopec.eccosolution.it/Email/SendKaleyraMessage', {
+      const response = await fetch('https://eccopec-v2.eccosolution.it/Email/SendKaleyraMessage', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -128,16 +129,19 @@ export function ContattiPage() {
                 </p>
               </div>
 
-              <ReCAPTCHA
-                ref={recaptchaRef}
-                sitekey={RECAPTCHA_SITE_KEY}
-                hl={language}
-                onChange={(token) => {
-                  setCaptchaToken(token);
-                  if (token) setError(null);
-                }}
-                onExpired={() => setCaptchaToken(null)}
-              />
+              {/* reCAPTCHA è di Google: viene caricato solo dopo il consenso (vedi consent/cookieConfig.ts). */}
+              <ConsentGate service="recaptcha">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={RECAPTCHA_SITE_KEY}
+                  hl={language}
+                  onChange={(token) => {
+                    setCaptchaToken(token);
+                    if (token) setError(null);
+                  }}
+                  onExpired={() => setCaptchaToken(null)}
+                />
+              </ConsentGate>
 
               {error === 'captcha' && <p className="text-sm text-destructive">{content.error.captchaMissing}</p>}
 
